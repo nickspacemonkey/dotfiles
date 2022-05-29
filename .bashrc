@@ -106,13 +106,14 @@ alias tn='tmux new-session'
 # Lists all ongoing sessions
 alias tl='tmux list-sessions'
 
-alias dc='docker-compose'
+# Docker aliases
+alias dc='sudo docker-compose'
 
-alias dcup='docker-compose up -d'
+alias dcup='sudo docker-compose up -d'
 
-alias dcdown='docker-compose down'
+alias dcdown='sudo docker-compose down'
 
-alias dcrestart='docker-compose restart'
+alias dcrestart='sudo docker-compose restart'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
