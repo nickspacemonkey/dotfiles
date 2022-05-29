@@ -94,6 +94,26 @@ alias l='ls -CF'
 
 alias python='python3'
 
+# Attaches tmux to the last session; creates a new session if none exists.
+alias t='tmux attach || tmux new-session'
+
+# Attaches tmux to a session (example: ta portal)
+alias ta='tmux attach -t'
+
+# Creates a new session
+alias tn='tmux new-session'
+
+# Lists all ongoing sessions
+alias tl='tmux list-sessions'
+
+alias dc='docker-compose'
+
+alias dcup='docker-compose up -d'
+
+alias dcdown='docker-compose down'
+
+alias dcrestart='docker-compose restart'
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -113,5 +133,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-screenfetch
