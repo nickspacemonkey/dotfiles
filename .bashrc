@@ -43,7 +43,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-force_color_prompt=yes
+#force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -79,9 +79,9 @@ if [ -x /usr/bin/dircolors ]; then
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
-    #alias grep='grep --color=auto'
-    #alias fgrep='fgrep --color=auto'
-    #alias egrep='egrep --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
@@ -89,10 +89,8 @@ fi
 
 # some more ls aliases
 alias ll='ls -la'
-alias la='ls -A'
-alias l='ls -CF'
-
-alias python='python3'
+#alias la='ls -A'
+#alias l='ls -CF'
 
 # Attaches tmux to the last session; creates a new session if none exists.
 alias t='tmux attach || tmux new-session'
@@ -107,13 +105,19 @@ alias tn='tmux new-session'
 alias tl='tmux list-sessions'
 
 # Docker aliases
-alias dc='sudo docker-compose'
+alias dc='sudo docker compose'
 
-alias dcup='sudo docker-compose up -d'
+alias dcup='sudo docker compose up --force-recreate -d'
 
-alias dcdown='sudo docker-compose down'
+alias dcdown='sudo docker compose down'
 
-alias dcrestart='sudo docker-compose restart'
+alias dcrestart='sudo docker compose restart'
+
+alias docker-clean=' \
+  sudo docker container prune -f; \
+	sudo docker image prune -af; \
+	sudo docker network prune -f; \
+  sudo docker volume prune -af '
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -133,4 +137,9 @@ if ! shopt -oq posix; then
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
+fi
+
+#tmux on login
+if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
+  tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
 fi
