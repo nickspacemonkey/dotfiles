@@ -115,8 +115,8 @@ alias dcrestart='sudo docker compose restart'
 
 alias docker-clean=' \
   sudo docker container prune -f; \
-	sudo docker image prune -af; \
-	sudo docker network prune -f; \
+  sudo docker image prune -af; \
+  sudo docker network prune -f; \
   sudo docker volume prune -af '
 
 # Alias definitions.
