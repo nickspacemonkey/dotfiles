@@ -88,9 +88,17 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -la'
+if command -v exa &> /dev/null
+  then
+    alias ll='exa -la'
+  else
+    alias ll='ls -la'
 #alias la='ls -A'
 #alias l='ls -CF'
+fi
+
+# Alias sudo for completion
+alias sudo='sudo '
 
 # Attaches tmux to the last session; creates a new session if none exists.
 alias t='tmux attach || tmux new-session'
@@ -118,6 +126,12 @@ alias docker-clean=' \
   sudo docker image prune -af; \
   sudo docker network prune -f; \
   sudo docker volume prune -af '
+
+# Apt for Nala
+if command -v nala &> /dev/null
+  then
+    alias apt='nala'
+fi
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
