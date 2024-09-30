@@ -139,7 +139,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#tmux on login
+# tmux on login
 if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
   tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+fi
+
+# Alias for bat if installed
+if command -v bat &> /dev/null || command -v batcat &> /dev/null
+  then
+    alias cat='batcat -pp'
+    alias less='batcat -p'
 fi
