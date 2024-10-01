@@ -180,3 +180,10 @@ if has("autocmd")
 endif
 EOL
 fi
+
+if [ ! -f "$HOME/.tmux.conf" ]; then
+  cat <<EOL > "$HOME/.tmux.conf"
+set -g mouse on
+set -g default-terminal "screen-256color"
+EOL
+fi
