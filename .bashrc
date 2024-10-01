@@ -164,3 +164,19 @@ if command -v bat &> /dev/null || command -v batcat &> /dev/null
     alias cat='batcat -pp'
     alias less='batcat -p'
 fi
+
+if [ ! -f "$HOME/.vimrc" ]; then
+  cat <<EOL > "$HOME/.vimrc"
+set nocompatible
+set backspace=indent,eol,start
+syntax on
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set autoindent
+set number
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("\$") | execute "normal! g\`\"" | endif
+endif
+EOL
+fi
