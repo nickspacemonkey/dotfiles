@@ -159,7 +159,11 @@ if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
 fi
 
 # Alias for bat if installed
-if command -v bat &> /dev/null || command -v batcat &> /dev/null
+if command -v bat &> /dev/null
+  then
+    alias cat='bat -pp'
+    alias less='bat -p'
+elif command -v batcat &> /dev/null
   then
     alias cat='batcat -pp'
     alias less='batcat -p'
