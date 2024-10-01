@@ -153,9 +153,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Disable tab autocomplete bell
-bind 'set bell-style none'
-
 # tmux on login
 if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
   tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
@@ -172,7 +169,41 @@ elif command -v batcat &> /dev/null
     alias less='batcat -p'
 fi
 
-if [ ! -f "$HOME/.vimrc" ]; then
+ 
+# Create or update .vimrc
+if [ -f "$HOME/.vimrc" ]; then
+  current_vimrc=$(cat "$HOME/.vimrc")
+  if ! diff <(echo "$current_vimrc") <(cat <<EOL
+set nocompatible
+set backspace=indent,eol,start
+syntax on
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set autoindent
+set number
+set visualbell
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("\$") | execute "normal! g\`\"" | endif
+endif
+EOL
+) > /dev/null; then
+    cat <<EOL > "$HOME/.vimrc"
+set nocompatible
+set backspace=indent,eol,start
+syntax on
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set autoindent
+set number
+set visualbell
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("\$") | execute "normal! g\`\"" | endif
+endif
+EOL
+  fi
+else
   cat <<EOL > "$HOME/.vimrc"
 set nocompatible
 set backspace=indent,eol,start
@@ -183,12 +214,12 @@ set shiftwidth=2
 set autoindent
 set number
 set visualbell
-set mouse+=a
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("\$") | execute "normal! g\`\"" | endif
 endif
 EOL
 fi
+
 
 # Create or update .tmux.conf
 tmux_conf_content='set -g mouse on
