@@ -90,52 +90,6 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-if command -v exa &> /dev/null
-  then
-    alias ll='exa -la'
-  else
-    alias ll='ls -la'
-#alias la='ls -A'
-#alias l='ls -CF'
-fi
-
-# Alias sudo for completion
-alias sudo='sudo '
-
-# Attaches tmux to the last session; creates a new session if none exists.
-alias t='tmux attach || tmux new-session'
-
-# Attaches tmux to a session (example: ta portal)
-alias ta='tmux attach -t'
-
-# Creates a new session
-alias tn='tmux new-session'
-
-# Lists all ongoing sessions
-alias tl='tmux list-sessions'
-
-# Docker aliases
-alias dc='sudo docker compose'
-
-alias dcup='sudo docker compose up --force-recreate -d'
-
-alias dcdown='sudo docker compose down'
-
-alias dcrestart='sudo docker compose restart'
-
-alias docker-clean=' \
-  sudo docker container prune -f; \
-  sudo docker image prune -af; \
-  sudo docker network prune -f; \
-  sudo docker volume prune -af '
-
-# Apt for Nala
-if command -v nala &> /dev/null
-  then
-    alias apt='nala'
-fi
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -163,15 +117,3 @@ bind 'set bell-style none'
 if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
   tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
 fi
-
-# Alias for bat if installed
-if command -v bat &> /dev/null
-  then
-    alias cat='bat -pp'
-    alias less='bat -p'
-elif command -v batcat &> /dev/null
-  then
-    alias cat='batcat -pp'
-    alias less='batcat -p'
-fi
- 
