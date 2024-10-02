@@ -174,12 +174,9 @@ elif command -v batcat &> /dev/null
     alias cat='batcat -pp'
     alias less='batcat -p'
 fi
-
  
 # Create or update .vimrc
-if [ -f "$HOME/.vimrc" ]; then
-  current_vimrc=$(cat "$HOME/.vimrc")
-  if ! diff <(echo "$current_vimrc") <(cat <<EOL
+vimrc_content=$(cat <<EOL
 set nocompatible
 set backspace=indent,eol,start
 syntax on
@@ -190,42 +187,14 @@ set autoindent
 set number
 set visualbell
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("\$") | execute "normal! g\`\"" | endif
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("\$") | execute "normal! g\\"" | endif
 endif
 EOL
-) > /dev/null; then
-    cat <<EOL > "$HOME/.vimrc"
-set nocompatible
-set backspace=indent,eol,start
-syntax on
-set expandtab
-set tabstop=2
-set shiftwidth=2
-set autoindent
-set number
-set visualbell
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("\$") | execute "normal! g\`\"" | endif
-endif
-EOL
-  fi
-else
-  cat <<EOL > "$HOME/.vimrc"
-set nocompatible
-set backspace=indent,eol,start
-syntax on
-set expandtab
-set tabstop=2
-set shiftwidth=2
-set autoindent
-set number
-set visualbell
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("\$") | execute "normal! g\`\"" | endif
-endif
-EOL
-fi
+)
 
+if [ ! -f "$HOME/.vimrc" ] || ! diff <(echo "$vimrc_content") "$HOME/.vimrc" > /dev/null; then
+  echo "$vimrc_content" > "$HOME/.vimrc"
+fi
 
 # Create or update .tmux.conf
 tmux_conf_content='set -g mouse on
