@@ -28,6 +28,6 @@ fi
 tmux_conf_content='set -g mouse on
 set -g default-terminal "screen-256color"'
 
-if ! diff <(echo "$tmux_conf_content") "$HOME/.tmux.conf" &> /dev/null; then
+if [ ! -f "$HOME/.tmux.conf" ] || ! diff <(echo "$tmux_conf_content") "$HOME/.tmux.conf" &> /dev/null; then
   echo "$tmux_conf_content" > "$HOME/.tmux.conf"
 fi
