@@ -20,7 +20,7 @@ HISTSIZE=5000
 HISTFILESIZE=10000
 
 # Display timestamp
-export PROMPT_COMMAND="echo -n \[\$(date +%H:%M:%S)\]\ "
+# export PROMPT_COMMAND="echo -n \[\$(date +%H:%M:%S)\]\ "
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
