@@ -1,8 +1,3 @@
-#Load .bashrc
-if [ -f ~/.bashrc ]; then
-  . ~/.bashrc
-fi
-
 #Create or update .vimrc
 vimrc_content=$(cat <<EOL
 set nocompatible
@@ -30,4 +25,9 @@ set -g default-terminal "screen-256color"'
 
 if [ ! -f "$HOME/.tmux.conf" ] || ! diff <(echo "$tmux_conf_content") "$HOME/.tmux.conf" &> /dev/null; then
   echo "$tmux_conf_content" > "$HOME/.tmux.conf"
+fi
+
+#Load .bashrc
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
 fi
