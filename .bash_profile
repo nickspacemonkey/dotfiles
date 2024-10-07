@@ -9,6 +9,7 @@ set shiftwidth=2
 set autoindent
 set number
 set visualbell
+set mouse=a
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("\$") | execute "normal! g\\"" | endif
 endif
