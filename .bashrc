@@ -113,6 +113,12 @@ fi
 # Disable tab autocomplete bell
 bind 'set bell-style none'
 
+# Set vi mode for prompt
+set -o vi
+
+# Set vim as default editor
+EDITOR=/usr/bin/vim
+
 # tmux on login
 if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
   tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
