@@ -45,3 +45,8 @@ elif command -v batcat &> /dev/null
     alias cat='batcat -pp'
     alias less='batcat -p'
 fi
+
+alias grep='grep --color=auto'
+alias df='df -h'
+alias du='du -h'
+alias mkdir='mkdir -p'
