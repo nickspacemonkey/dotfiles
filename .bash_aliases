@@ -50,4 +50,11 @@ alias grep='grep --color=auto'
 alias df='df -h'
 alias du='du -h'
 alias mkdir='mkdir -p'
-alias update='sudo apt-get update && sudo apt-get upgrade'
+
+if command -v apt > /dev/null; then
+    sudo apt update && sudo apt upgrade
+elif command -v dnf > /dev/null; then
+    sudo dnf upgrade
+else
+    echo "Neither apt-get nor dnf is installed."
+fi
