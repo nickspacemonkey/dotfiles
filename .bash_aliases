@@ -52,9 +52,9 @@ alias du='du -h'
 alias mkdir='mkdir -p'
 
 if command -v apt > /dev/null; then
-    sudo apt update && sudo apt upgrade
+    alias update='sudo apt update && sudo apt upgrade'
 elif command -v dnf > /dev/null; then
-    sudo dnf upgrade
+    alias update='sudo dnf upgrade'
 else
-    echo "Neither apt-get nor dnf is installed."
+    echo "Neither apt nor dnf is installed."
 fi
