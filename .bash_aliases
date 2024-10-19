@@ -51,7 +51,9 @@ alias df='df -h'
 alias du='du -h'
 alias mkdir='mkdir -p'
 
-if command -v apt > /dev/null; then
+if command -v nala > /dev/null; then
+    alias update='sudo nala update && sudo nala upgrade'
+elif command -v dnf > /dev/null; then
     alias update='sudo apt update && sudo apt upgrade'
 elif command -v dnf > /dev/null; then
     alias update='sudo dnf upgrade'
