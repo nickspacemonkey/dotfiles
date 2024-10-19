@@ -50,6 +50,7 @@ alias grep='grep --color=auto'
 alias df='df -h'
 alias du='du -h'
 alias mkdir='mkdir -p'
+alias myip='curl ifconfig.io'
 
 if command -v nala > /dev/null; then
     alias update='sudo nala update && sudo nala upgrade'
