@@ -52,9 +52,11 @@ alias du='du -h'
 alias mkdir='mkdir -p'
 alias myip='curl ifconfig.io'
 
-if command -v nala > /dev/null; then
+if command -v update > /dev/null; then
+    :
+elif command -v nala > /dev/null; then
     alias update='sudo nala update && sudo nala upgrade'
-elif command -v dnf > /dev/null; then
+elif command -v apt > /dev/null; then
     alias update='sudo apt update && sudo apt upgrade'
 elif command -v dnf > /dev/null; then
     alias update='sudo dnf upgrade'
