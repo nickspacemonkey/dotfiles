@@ -61,5 +61,5 @@ elif command -v apt > /dev/null; then
 elif command -v dnf > /dev/null; then
     alias update='sudo dnf upgrade'
 else
-    echo "Neither apt nor dnf is installed."
+    alias update='echo "Neither apt nor dnf is installed."'
 fi
