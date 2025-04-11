@@ -46,6 +46,13 @@ elif command -v batcat &> /dev/null
     alias less='batcat -p'
 fi
 
+#Alias for helix if installed
+if command -v hx &> /dev/null
+  then
+    alias vi='hx'
+    alias vim='hx'
+fi
+
 alias grep='grep --color=auto'
 alias df='df -h'
 alias du='du -h'
