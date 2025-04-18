@@ -54,7 +54,7 @@ if command -v hx &> /dev/null
 fi
 
 alias grep='grep --color=auto'
-alias df='df -h'
+alias df='df -hT'
 alias du='du -h'
 alias mkdir='mkdir -p'
 alias myip='curl ifconfig.io'
