@@ -62,11 +62,11 @@ alias myip='curl ifconfig.io'
 if command -v update > /dev/null; then
     :
 elif command -v nala > /dev/null; then
-    alias update='sudo nala update && sudo nala upgrade'
+    alias update='sudo nala update && sudo nala upgrade -y'
 elif command -v apt > /dev/null; then
-    alias update='sudo apt update && sudo apt upgrade'
+    alias update='sudo apt update && sudo apt upgrade -y'
 elif command -v dnf > /dev/null; then
-    alias update='sudo dnf upgrade'
+    alias update='sudo dnf upgrade -y'
 else
     alias update='echo "Neither apt nor dnf is installed."'
 fi
