@@ -1,7 +1,7 @@
 # ls alias
-if command -v exa &> /dev/null
-  then
-    alias ll='exa -la'
+if command -v eza &> /dev/null
+then
+    alias ll='eza -la'
   else
     alias ll='ls -la'
 fi
