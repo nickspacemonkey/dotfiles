@@ -11,12 +11,16 @@ alias sudo='sudo '
 
 # Attaches tmux to the last session; creates a new session if none exists.
 alias t='tmux attach || tmux new-session'
-# Attaches tmux to a named session, or the first session when no name is given.
+# Attaches tmux to a named session. Without a name, prefers ssh_tmux, then the first session.
 ta() {
   local session_name="${1:-}"
 
   if [[ -z "$session_name" ]]; then
-    session_name="$(tmux list-sessions -F '#S' 2>/dev/null | head -n1)"
+    if tmux has-session -t '=ssh_tmux' 2>/dev/null; then
+      session_name="ssh_tmux"
+    else
+      session_name="$(tmux list-sessions -F '#S' 2>/dev/null | head -n1)"
+    fi
   fi
 
   if [[ -z "$session_name" ]]; then
@@ -26,8 +30,19 @@ ta() {
 
   tmux attach-session -t "$session_name"
 }
-# Creates a new session
-alias tn='tmux new-session'
+# Creates a new session, optionally with the supplied name.
+tn() {
+  if (( $# > 1 )); then
+    echo "Usage: tn [session-name]"
+    return 2
+  fi
+
+  if (( $# == 1 )); then
+    tmux new-session -s "$1"
+  else
+    tmux new-session
+  fi
+}
 # Lists all ongoing sessions
 alias tl='tmux list-sessions'
 
