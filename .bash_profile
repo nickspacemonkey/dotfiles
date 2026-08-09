@@ -26,7 +26,7 @@ fi
 # Create or update .tmux.conf
 tmux_conf_content='set -g mouse on
 set -g default-terminal "tmux-256color"
-set -g default-command /usr/bin/fish'
+set -g default-command "/usr/bin/fish --features=no-query-term"'
 
 if [ ! -f "$HOME/.tmux.conf" ] || ! diff <(echo "$tmux_conf_content") "$HOME/.tmux.conf" &> /dev/null; then
   echo "$tmux_conf_content" > "$HOME/.tmux.conf"
