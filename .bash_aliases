@@ -11,8 +11,21 @@ alias sudo='sudo '
 
 # Attaches tmux to the last session; creates a new session if none exists.
 alias t='tmux attach || tmux new-session'
-# Attaches tmux to a session (example: ta portal)
-alias ta='tmux attach -t'
+# Attaches tmux to a named session, or the first session when no name is given.
+ta() {
+  local session_name="${1:-}"
+
+  if [[ -z "$session_name" ]]; then
+    session_name="$(tmux list-sessions -F '#S' 2>/dev/null | head -n1)"
+  fi
+
+  if [[ -z "$session_name" ]]; then
+    echo "No tmux sessions are available."
+    return 1
+  fi
+
+  tmux attach-session -t "$session_name"
+}
 # Creates a new session
 alias tn='tmux new-session'
 # Lists all ongoing sessions
