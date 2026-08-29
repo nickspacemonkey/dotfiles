@@ -26,6 +26,7 @@ fi
 # Create or update .tmux.conf
 tmux_conf_content='set -g mouse on
 set -g default-terminal "tmux-256color"
+set -s set-clipboard external
 set -sg escape-time 500
 set -g default-command /usr/bin/fish'
 
