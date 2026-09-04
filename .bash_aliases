@@ -82,6 +82,7 @@ if command -v hx &> /dev/null
 fi
 
 alias grep='grep --color=auto'
+alias cp='cp --reflink=auto'
 alias df='df -hT'
 alias du='du -h'
 alias mkdir='mkdir -p'
