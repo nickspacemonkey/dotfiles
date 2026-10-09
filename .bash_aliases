@@ -96,10 +96,12 @@ elif command -v apt > /dev/null; then
     alias update='sudo apt update && sudo apt upgrade -y'
 elif command -v dnf > /dev/null; then
     alias update='sudo dnf upgrade -y'
+elif command -v pacman > /dev/null; then
+    alias update='sudo pacman -Syu --noconfirm'
 elif command -v zypper > /dev/null; then
     alias update='sudo zypper refresh && sudo zypper update -y'
 elif command -v apk > /dev/null; then
-    alias update='sudo apk update && sudo apk upgrade'
+    alias update='sudo apk --no-interactive update && sudo apk --no-interactive upgrade'
 else
     alias update='echo "No supported package manager is installed."'
 fi
